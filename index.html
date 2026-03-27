@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Geotab Vitality AI Skills Guide</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f7fa;
+      color: #1a1a2e;
+      line-height: 1.6;
+    }
+    header {
+      background: #0071CE;
+      color: white;
+      padding: 40px 48px 32px;
+    }
+    header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+    header p { font-size: 15px; opacity: 0.85; max-width: 640px; }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      margin-top: 14px;
+      letter-spacing: 0.4px;
+    }
+    main { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+    .intro {
+      background: white;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 36px;
+      border-left: 4px solid #0071CE;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .intro h2 { font-size: 16px; color: #0071CE; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .intro p { font-size: 14px; color: #444; margin-bottom: 8px; }
+    .intro code {
+      background: #f0f4ff;
+      color: #0071CE;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: 'SF Mono', monospace;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px 26px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      border-top: 3px solid #0071CE;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .card-title { font-size: 16px; font-weight: 700; color: #0d1b2a; }
+    .invoke {
+      background: #eef5ff;
+      color: #0071CE;
+      font-size: 12px;
+      font-family: 'SF Mono', monospace;
+      padding: 3px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      border: 1px solid #c5daff;
+    }
+    .desc { font-size: 13.5px; color: #555; }
+    .when {
+      font-size: 12.5px;
+      color: #777;
+      background: #f8f9fc;
+      border-radius: 6px;
+      padding: 8px 12px;
+      border-left: 3px solid #e0e7ff;
+    }
+    .when strong { color: #0071CE; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; display: block; margin-bottom: 3px; }
+    .example {
+      background: #1a1a2e;
+      color: #a8d8ff;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 12px;
+      font-family: 'SF Mono', monospace;
+      line-height: 1.5;
+    }
+    .example .label { color: #6c9fff; font-size: 11px; margin-bottom: 4px; opacity: 0.7; }
+    .quick-ref {
+      background: white;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-top: 40px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .quick-ref h2 { font-size: 18px; font-weight: 700; color: #0d1b2a; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    th { background: #0071CE; color: white; padding: 10px 14px; text-align: left; font-weight: 600; }
+    th:first-child { border-radius: 6px 0 0 6px; }
+    th:last-child { border-radius: 0 6px 6px 0; }
+    td { padding: 10px 14px; border-bottom: 1px solid #f0f2f5; color: #333; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fbff; }
+    td code {
+      background: #eef5ff;
+      color: #0071CE;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-family: 'SF Mono', monospace;
+    }
+    .share-bar {
+      background: #fff;
+      border-bottom: 1px solid #e8edf3;
+      padding: 14px 48px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .share-bar-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0071CE;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .share-bar-label svg { flex-shrink: 0; }
+    .share-link-box {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      min-width: 260px;
+      background: #f0f4ff;
+      border: 1px solid #c5daff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .share-link-text {
+      flex: 1;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: #0047a3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      user-select: all;
+    }
+    .copy-btn {
+      background: #0071CE;
+      color: white;
+      border: none;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .copy-btn:hover { background: #005baa; }
+    .copy-btn.copied { background: #1a8a4a; }
+    .open-btn {
+      background: white;
+      color: #0071CE;
+      border: 1.5px solid #0071CE;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .open-btn:hover { background: #0071CE; color: white; }
+    footer {
+      text-align: center;
+      padding: 32px;
+      font-size: 12px;
+      color: #999;
+    }
+    footer span { color: #0071CE; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Geotab Vitality — AI Skills Guide</h1>
+  <p>11 purpose-built Claude skills for the Customer Success Coordinator role. Each skill handles a specific workflow — from morning briefings to stakeholder decks — so you spend time on outcomes, not admin.</p>
+  <div class="badge">Stored at ~/MySkills/vitality-* · Restart Claude Code to activate</div>
+</header>
+
+<div class="share-bar">
+  <div class="share-bar-label">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0071CE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+    </svg>
+    Share this page
+  </div>
+  <div class="share-link-box">
+    <span class="share-link-text" id="share-url">https://htmlpreview.github.io/?https://gist.githubusercontent.com/bharathsaravanan-31/35af61c70c08c72a3990ee3b2840a180/raw/vitality-skills-guide.html</span>
+    <button class="copy-btn" id="copy-btn" onclick="copyLink()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+      </svg>
+      <span id="copy-label">Copy link</span>
+    </button>
+  </div>
+  <a class="open-btn" href="https://htmlpreview.github.io/?https://gist.githubusercontent.com/bharathsaravanan-31/35af61c70c08c72a3990ee3b2840a180/raw/vitality-skills-guide.html" target="_blank" rel="noopener">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
+    </svg>
+    Open page
+  </a>
+</div>
+
+<script>
+  function copyLink() {
+    const url = document.getElementById('share-url').textContent;
+    navigator.clipboard.writeText(url).then(() => {
+      const btn = document.getElementById('copy-btn');
+      const label = document.getElementById('copy-label');
+      btn.classList.add('copied');
+      label.textContent = 'Copied!';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        label.textContent = 'Copy link';
+      }, 2000);
+    });
+  }
+</script>
+
+<main>
+
+  <div class="intro">
+    <h2>How to Use These Skills</h2>
+    <p>Type the skill name as a slash command in Claude Code — e.g. <code>/vitality-daily-brief</code> — then paste your content. Each skill knows what to ask for if context is missing.</p>
+    <p>Skills are stored at <code>~/MySkills/vitality-*/SKILL.md</code> and are personal to your Claude Code installation. Start with <code>/vitality-explore</code> to get a personalized onboarding prompt for your exact workflow.</p>
+    <p>Skills work best when you paste real content — Slack excerpts, call notes, survey data, tracker exports — directly into the prompt. The more context, the fewer revision cycles.</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Log Activity to CRM</div>
+        <div class="invoke">/vitality-log-crm</div>
+      </div>
+      <div class="desc">Converts rough post-call notes into a structured, Salesforce-ready activity log. Handles batch mode — paste notes from multiple calls and it processes each one.</div>
+      <div class="when"><strong>When to use</strong>After any customer call, onboarding session, check-in, or enrollment follow-up. Say "log this call" or "draft CRM entry".</div>
+      <div class="example">
+        <div class="label">EXAMPLE PROMPT</div>
+        I just finished a 30-min onboarding call with Acme Corp. Notes:<br>
+        - Spoke with Jane (IT lead)<br>
+        - Device arrived, not set up yet<br>
+        - Privacy concern: who sees data?<br>
+        - Next: send privacy FAQ by Friday<br>
+        Log this to Salesforce.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Adapt Content Across Platforms</div>
+        <div class="invoke">/vitality-adapt</div>
+      </div>
+      <div class="desc">Takes one Vitality message and outputs Slack post + manager email + intranet article + slide talking points — all at once, without rewriting from scratch.</div>
+      <div class="when"><strong>When to use</strong>When the same update needs to go to multiple channels. Say "adapt this for Slack and email" or "repurpose this content".</div>
+      <div class="example">
+        <div class="label">EXAMPLE PROMPT</div>
+        Here's our Q2 enrollment update: we hit 42% enrollment,<br>
+        up from 30%. Next milestone is 60% by June 30.<br>
+        Adapt into: Slack post, manager email, 3 slide talking points.<br>
+        Match the tone of this example email: [paste]
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Analyze Patterns in User Feedback</div>
+        <div class="invoke">/vitality-analyze-feedback</div>
+      </div>
+      <div class="desc">Extracts themes, sentiment breakdown, frequency counts, and quick-win recommendations from surveys, support emails, and Slack feedback — all at once.</div>
+      <div class="when"><strong>When to use</strong>After survey results land or when you've collected a batch of user feedback. Say "analyze this feedback" or "what are users saying".</div>
+      <div class="example">
+        <div class="label">EXAMPLE PROMPT</div>
+        Here are 3 sources of Vitality feedback from the past 60 days:<br>
+        Survey responses: [paste CSV or text]<br>
+        Support emails: [paste summaries]<br>
+        Slack excerpts: [paste]<br>
+        Find top themes, sentiment, and 3 quick wins.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Generate Project Status Reports</div>
+        <div class="invoke">/vitality-status-report</div>
+      </div>
+      <div class="desc">Consolidates Slack updates, emails, and tracker notes into a structured weekly program status report. Flags blockers, reconciles conflicting numbers, and produces an executive summary.</div>
+      <div class="when"><strong>When to use</strong>Weekly or monthly reporting to leadership. Say "generate status report" or "weekly Vitality update".</div>
+      <div class="example">
+        <div class="label">EXAMPLE PROMPT</div>
+        Here are updates from this week [paste Slack, email, tracker].<br>
+        Generate a Vitality status report:<br>
+        - Enrollment vs. target<br>
+        - Onboarding cohort health<br>
+        - Blockers &gt;5 days old<br>
+        - 3-sentence executive summary
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Surface Themes from All Feedback Channels</div>
+        <div class="invoke">/vitality-surface-themes</div>
+      </div>
+      <div class="desc">Cross-references ALL feedback sources and surfaces only validated themes — those appearing in 2+ channels. Separates real signal from one-off noise with a ranked priority list.</div>
+      <div class="when"><strong>When to use</strong>Quarterly synthesis to confirm what's genuinely widespread. Say "cross-channel feedback analysis" or "what's validated signal".</div>
+      <div class="example">
+        <div class="label">EXAMPLE PROMPT</div>
+        Synthesize Vitality feedback from Q1 across:<br>
+        - Survey responses [paste]<br>
+        - #vitality-questions Slack [paste]<br>
+        - CS meeting notes [paste]<br>
+        Show only themes appearing in 2+ sources, ranked by priority.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Source Insights to Build a Deck</div>
+        <div class="invoke">/vitality-build-deck</div>
+      </div>
+      <div class="desc">Synthesizes enrollment data, wins, feedback themes, and blockers from multiple sources into a slide-by-slide outline with talking points and a 2-paragraph executive narrative.</div>
+      <div class="when"><strong>When to use</strong>QBRs, stakeholder presentations, enrollment milestone decks. Say "build a deck" or "create a QBR presentation".</div>
+      <div class="example">
+        <div class="label">EXAMPLE PROMPT</div>
+        Build a Vitality Q2 review deck. Sources:<br>
+        - Enrollment metrics: 42%, target 60% by June [paste data]<br>
+        - Wins from Slack [paste]<br>
+        - Feedback themes [paste]<br>
+        - Blockers [paste]<br>
+        7 slides. Audience: leadership team.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Build a Daily Briefing</div>
+        <div class="invoke">/vitality-daily-brief</div>
+      </div>
+      <div class="desc">Builds a structured morning briefing from pasted Slack messages, email updates, and tracker notes. Surfaces urgent items, at-risk customers, overdue follow-ups, and one strategic focus.</div>
+      <div class="when"><strong>When to use</strong>Start of every workday. Say "daily brief", "morning briefing", or "what do I focus on today".</div>
+      <div class="example">
+        <div class="label">EXAMPLE PROMPT</div>
+        Here are my Slack messages and emails from this morning [paste].<br>
+        Build my daily Vitality briefing:<br>
+        - Urgent actions<br>
+        - At-risk customers<br>
+        - Overdue follow-ups<br>
+        - Today's strategic focus (15 min)
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Package Brand Guidelines</div>
+        <div class="invoke">/vitality-brand</div>
+      </div>
+      <div class="desc">Reviews any content against Geotab Vitality brand standards (color, tone, language rules) and delivers an on-brand rewrite. Also generates a reusable brand SKILL.md for future sessions.</div>
+      <div class="when"><strong>When to use</strong>Before sending any customer or internal communication. Say "make this on-brand", "apply brand guidelines", or "review this email".</div>
+      <div class="example">
+        <div class="label">EXAMPLE PROMPT</div>
+        Review this onboarding email for brand compliance [paste].<br>
+        Flag anything off-brand and deliver a corrected version.<br>
+        ─────────────────────<br>
+        OR: Generate a brand skill file I can reuse in future sessions.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Explore What Claude Can Do</div>
+        <div class="invoke">/vitality-explore</div>
+      </div>
+      <div class="desc">Maps your current tasks to Claude capabilities and returns 5 personalized, ready-to-run prompts with time-saved estimates. Ideal for onboarding new team members.</div>
+      <div class="when"><strong>When to use</strong>First session with a new team member, or when you want to find underused capabilities. Say "what can Claude do for me" or "show me how to use this".</div>
+      <div class="example">
+        <div class="label">EXAMPLE PROMPT</div>
+        I'm a Vitality CS Coordinator. My day includes:<br>
+        - Responding to internal user questions<br>
+        - Creating onboarding materials<br>
+        - Tracking enrollment metrics<br>
+        - Running engagement campaigns<br>
+        Show me 5 ways Claude saves me time with ready-to-use prompts.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Create a Process Flowchart</div>
+        <div class="invoke">/vitality-flowchart</div>
+      </div>
+      <div class="desc">Converts a written procedure, playbook, or escalation path into an ASCII decision tree + Mermaid.js code block (embeddable in Confluence or Notion), with role labels and exception paths.</div>
+      <div class="when"><strong>When to use</strong>Documenting onboarding procedures, troubleshooting guides, escalation paths. Say "create a flowchart", "visualize this process", or "make a decision tree".</div>
+      <div class="example">
+        <div class="label">EXAMPLE PROMPT</div>
+        Convert this onboarding SOP [paste] into a decision-tree flowchart.<br>
+        Show:<br>
+        - Each step with owner (CS / Customer / IT)<br>
+        - Decision points (device activated? Y/N)<br>
+        - Exception paths<br>
+        Also export Mermaid.js for Confluence.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Create a Company Newsletter</div>
+        <div class="invoke">/vitality-newsletter</div>
+      </div>
+      <div class="desc">Synthesizes enrollment milestones, program wins, user spotlights, upcoming events, and FAQs into a polished, 500-word internal newsletter — scannable on mobile, Geotab-branded.</div>
+      <div class="when"><strong>When to use</strong>Monthly program newsletter for internal stakeholders. Say "create newsletter", "write the Vitality newsletter", or "monthly digest".</div>
+      <div class="example">
+        <div class="label">EXAMPLE PROMPT</div>
+        Create the April Vitality newsletter using:<br>
+        - Enrollment: 42% enrolled [paste metrics]<br>
+        - Wins from this month [paste]<br>
+        - Upcoming: Q&A session April 15<br>
+        - User spotlight: [paste notes]<br>
+        - Top 2 FAQs this month [paste]
+      </div>
+    </div>
+
+  </div><!-- end grid -->
+
+  <div class="quick-ref">
+    <h2>Quick Reference — Task to Skill</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Skill</th>
+          <th>Key Prompt Element</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Log a customer call to Salesforce</td><td><code>/vitality-log-crm</code></td><td>Paste call notes + customer name</td></tr>
+        <tr><td>Send the same update to 3+ channels</td><td><code>/vitality-adapt</code></td><td>Source content + list target channels</td></tr>
+        <tr><td>Make sense of survey results</td><td><code>/vitality-analyze-feedback</code></td><td>Paste all feedback sources together</td></tr>
+        <tr><td>Weekly leadership update</td><td><code>/vitality-status-report</code></td><td>Paste Slack + email + tracker updates</td></tr>
+        <tr><td>Confirm what issues are really widespread</td><td><code>/vitality-surface-themes</code></td><td>Paste 2+ feedback sources</td></tr>
+        <tr><td>Build a QBR or stakeholder deck</td><td><code>/vitality-build-deck</code></td><td>Enrollment data + wins + blockers</td></tr>
+        <tr><td>Plan my day in under 3 minutes</td><td><code>/vitality-daily-brief</code></td><td>Paste morning Slack + email</td></tr>
+        <tr><td>Review content for brand compliance</td><td><code>/vitality-brand</code></td><td>Paste draft + say "review for brand"</td></tr>
+        <tr><td>Onboard a new team member to AI</td><td><code>/vitality-explore</code></td><td>Describe their role + current tasks</td></tr>
+        <tr><td>Turn a playbook into a visual flow</td><td><code>/vitality-flowchart</code></td><td>Paste the SOP or procedure doc</td></tr>
+        <tr><td>Write the monthly internal newsletter</td><td><code>/vitality-newsletter</code></td><td>Paste monthly highlights + metrics</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<footer>
+  Geotab Vitality AI Skills · Built with Claude Code · <span>~/MySkills/vitality-*</span> · March 2026
+</footer>
+
+</body>
+</html>
